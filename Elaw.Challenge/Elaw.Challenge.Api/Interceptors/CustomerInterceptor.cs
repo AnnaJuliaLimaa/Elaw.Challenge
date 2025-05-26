@@ -8,7 +8,7 @@ namespace Elaw.Challenge.Api
     {
         public static WebApplication ConfigureControllers(this WebApplication app)
         {
-            app.MapGet("/clientes/{id}", async (IValidator<CustomerViewModel> validator, ICustomerApplication service, Guid id) =>
+            app.MapGet("v{version:apiVersion}/clientes/{id}", async (IValidator<CustomerViewModel> validator, ICustomerApplication service, Guid id) =>
             {
                 var customer = service.GetById(id);
 
@@ -19,7 +19,7 @@ namespace Elaw.Challenge.Api
 
             });
 
-            app.MapPost("/clientes", async (IValidator<CustomerViewModel> validator, ICustomerApplication service, [FromBody] CustomerViewModel customer) =>
+            app.MapPost("v{version:apiVersion}/clientes", async (IValidator<CustomerViewModel> validator, ICustomerApplication service, [FromBody] CustomerViewModel customer) =>
             {
                 var result = await validator.ValidateAsync(customer);
 
@@ -33,7 +33,7 @@ namespace Elaw.Challenge.Api
                 return Results.Created($"/{customer.Id}", customer);
             });
 
-            app.MapPut("/clientes/{id}", async (IValidator<CustomerViewModel> validator, ICustomerApplication service, Guid id, [FromBody] CustomerViewModel customer) =>
+            app.MapPut("v{version:apiVersion}/clientes/{id}", async (IValidator<CustomerViewModel> validator, ICustomerApplication service, Guid id, [FromBody] CustomerViewModel customer) =>
             {
                 customer.Id = id;
 
@@ -49,7 +49,7 @@ namespace Elaw.Challenge.Api
                 return Results.Created($"/{updated.Id}", customer);
             });
 
-            app.MapDelete("/clientes/{id}", async (IValidator<CustomerViewModel> validator, ICustomerApplication service, Guid id) =>
+            app.MapDelete("v{version:apiVersion}/clientes/{id}", async (IValidator<CustomerViewModel> validator, ICustomerApplication service, Guid id) =>
             {
                 service.Delete(id);
 
