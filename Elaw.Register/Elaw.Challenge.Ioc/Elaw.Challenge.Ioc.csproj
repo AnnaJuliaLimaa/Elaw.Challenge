@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Elaw.Challenge.Application\Elaw.Challenge.Application.csproj" />
+    <ProjectReference Include="..\Elaw.Challenge.Domain\Elaw.Challenge.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
