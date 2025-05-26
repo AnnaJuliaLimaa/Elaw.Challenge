@@ -1,4 +1,4 @@
-﻿using Elaw.Challenge.Extensions.Repository;
+﻿using Elaw.Challenge.Extensions;
 
 namespace Elaw.Challenge.Domain
 {

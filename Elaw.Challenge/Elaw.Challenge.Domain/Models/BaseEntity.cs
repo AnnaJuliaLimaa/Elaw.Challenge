@@ -1,6 +1,6 @@
 ﻿namespace Elaw.Challenge.Domain
 {
-    public class Base
+    public class BaseEntity
     {
         public Guid Id { get; set; } = Guid.NewGuid();
         public bool Deleted { get; set; } = false;

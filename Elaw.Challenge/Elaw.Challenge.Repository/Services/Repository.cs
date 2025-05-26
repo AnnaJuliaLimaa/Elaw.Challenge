@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Elaw.Challenge.Extensions.Repository
+namespace Elaw.Challenge.Extensions
 {
     public class Repository<T> : IRepository<T>, IDisposable where T : class
     {
@@ -27,14 +27,14 @@ namespace Elaw.Challenge.Extensions.Repository
         {
             return _entity.Find(id);
         }
-        public T Add(T entity, bool detach = false)
+        public T Add(T entity)
         {
             _entity.Add(entity);
 
             this.SaveChanges();
 
-            if (detach)
-                _context.Detach(entity);
+            //if (detach)
+            //    _context.Detach(entity);
 
             return entity;
         }

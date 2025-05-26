@@ -2,7 +2,7 @@
 
 namespace Elaw.Challenge.Domain
 {
-    public class Customer : Base
+    public class Customer : BaseEntity
     {
         public Guid AddressId { get; set; }
         public string Name { get; set; }

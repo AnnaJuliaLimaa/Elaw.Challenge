@@ -1,6 +1,6 @@
 ﻿namespace Elaw.Challenge.Domain
 {
-    public class Address : Base
+    public class Address : BaseEntity
     {
         public string Street { get; set; }
         public string Number { get; set; }

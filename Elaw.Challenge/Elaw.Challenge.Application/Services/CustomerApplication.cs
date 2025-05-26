@@ -17,11 +17,9 @@ namespace Elaw.Challenge.Application
 
         public CustomerViewModel Add(CustomerViewModel model)
         {
-            var customer = _mapper.Map<Customer>(model);
+            var customer = _service.Add(_mapper.Map<Customer>(model));
 
-            var createdCustomer = _service.Add(customer);
-
-            return _mapper.Map<CustomerViewModel>(createdCustomer);
+            return _mapper.Map<CustomerViewModel>(customer);
         }
         public CustomerViewModel Update(Guid id, CustomerViewModel model)
         {

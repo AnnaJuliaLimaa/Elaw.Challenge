@@ -14,7 +14,7 @@ namespace Elaw.Challenge.Extensions.Repository
         {
             var _context = GetContext<T>(provider);
 
-            //_context.Database.EnsureDeleted();
+           // _context.Database.EnsureDeleted();
             _context.Database.EnsureCreated();
         }
         public static ServiceProvider CreateContext<T>(this IConfiguration builder, string pattern = Patterns.DefaultConnection) where T : DbContext

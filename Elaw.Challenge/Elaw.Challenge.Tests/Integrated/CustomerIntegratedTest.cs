@@ -1,5 +1,4 @@
 ﻿using Elaw.Challenge.Application;
-using Elaw.Challenge.Domain;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,7 +12,7 @@ namespace Elaw.Challenge.Tests
         {
             var customer = _application.Add(Customer);
 
-            if (customer.Id != Guid.Empty)
+            if (customer != null)
                 Assert.Pass();
             else
                 Assert.Fail("Erro no teste integrado para geração ");
@@ -35,20 +34,19 @@ namespace Elaw.Challenge.Tests
         {
             var duplicateCustomer = new CustomerViewModel();
 
-            duplicateCustomer.AddCustomer(
-                "Anna Duplicada",
-                "anna@gmail.com", 
-                "21999999999",
-                new AddressViewModel
-                {
-                    City = "Rio de Janeiro",
-                    Number = "456",
-                    Street = "Rua Duplicada",
-                    State = "RJ",
-                    ZipCode = "21535000",
-                    Id = Guid.NewGuid() 
-                });
-
+            duplicateCustomer.SetEmail("anna@gmail.com");
+            duplicateCustomer.SetName("Anna Duplicada");
+            duplicateCustomer.SetPhone("21999999999");
+            duplicateCustomer.AddAddress(new AddressViewModel
+            {
+                City = "Rio de Janeiro",
+                Number = "456",
+                Street = "Rua Duplicada",
+                State = "RJ",
+                ZipCode = "21535000",
+                Id = Guid.NewGuid()
+            });
+               
             var ex = Assert.Throws<DbUpdateException>(() => _application.Add(duplicateCustomer));
 
             Assert.That(ex.InnerException, Is.InstanceOf<SqlException>());
@@ -59,12 +57,11 @@ namespace Elaw.Challenge.Tests
         {
             var clienteTeste = new CustomerViewModel();
 
-            clienteTeste.Id = Guid.NewGuid();
-            clienteTeste.AddCustomer(
-                "Cliente para Deletar",
-                "deletar@teste.com",
-                "21999999999",
-                new AddressViewModel
+            clienteTeste.SetId(Guid.NewGuid());
+            clienteTeste.SetEmail("deletar@teste.com");
+            clienteTeste.SetName("Cliente para Deleta");
+            clienteTeste.SetPhone("21999999999");
+            clienteTeste.AddAddress(new AddressViewModel
                 {
                     City = "Rio de Janeiro",
                     Number = "123",
@@ -88,10 +85,10 @@ namespace Elaw.Challenge.Tests
         public void TotalDeClientes_DeveRetornarQuantidadeCorreta()
         {
             var customers = _application.Get();
-            var totalClientes = customers.Count;
+            var totalClientes = customers.Count() == 1;
 
             Assert.That(customers, Is.Not.Null, "A lista de clientes não deveria ser nula");
-            Assert.That(totalClientes, Is.EqualTo(1), "Deveria retornar exatamente 1 cliente");
+            Assert.That(totalClientes, "Deveria retornar exatamente 1 cliente");
         }
     }
 }

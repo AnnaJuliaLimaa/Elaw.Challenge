@@ -1,5 +1,5 @@
+using Elaw.Challenge.Api.Configure;
 using Elaw.Challenge.Ioc;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.OpenApi.Models;
 
 namespace Elaw.Challenge.Api
@@ -18,10 +18,11 @@ namespace Elaw.Challenge.Api
 
             // Dependency Injectors
             builder.Services.Inject();
+            builder.Services.ConfigureVersion();
 
             builder.Services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Customer API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Elaw Challenge", Version = "v1" });
             });
 
             var app = builder.Build();
@@ -34,7 +35,7 @@ namespace Elaw.Challenge.Api
             app.UseSwagger(); 
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Minha API v1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Elaw Challenge v1");
             });
 
             app.UseAuthorization();

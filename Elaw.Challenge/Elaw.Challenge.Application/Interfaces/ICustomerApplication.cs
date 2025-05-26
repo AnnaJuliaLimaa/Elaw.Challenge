@@ -2,10 +2,10 @@
 {
     public interface ICustomerApplication
     {
-        public List<CustomerViewModel> Get();
-        public CustomerViewModel GetById(Guid Id);
-        public void Delete(Guid Id);
-        public CustomerViewModel Update(Guid id, CustomerViewModel model);
-        public CustomerViewModel Add(CustomerViewModel model);
+         List<CustomerViewModel> Get();
+         CustomerViewModel GetById(Guid Id);
+         void Delete(Guid Id);
+         CustomerViewModel Update(Guid id, CustomerViewModel model);
+         CustomerViewModel Add(CustomerViewModel model);
     }
 }
