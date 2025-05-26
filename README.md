@@ -13,4 +13,4 @@ Documentação interativa com Swagger
 http://localhost/v1/swagger
 
 ⚠️ As rotas seguem o padrão de versionamento, por exemplo:
-GET /v1/clientes
+GET /v1.0/clientes
