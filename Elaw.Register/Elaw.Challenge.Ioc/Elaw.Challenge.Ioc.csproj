@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Elaw.Challenge.Application\Elaw.Challenge.Application.csproj" />
     <ProjectReference Include="..\Elaw.Challenge.Domain\Elaw.Challenge.Domain.csproj" />
   </ItemGroup>

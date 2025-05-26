@@ -1,11 +1,11 @@
-﻿using System;
-using FluentValidation;
-using System.Diagnostics;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Mvc.Versioning;
 using Elaw.Challenge.Domain;
 using Elaw.Challenge.Application;
 using Elaw.Challenge.Extensions.Repository;
 using Elaw.Challenge.Application.Validators;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Mvc;
 
 
 namespace Elaw.Challenge.Ioc
@@ -14,6 +14,17 @@ namespace Elaw.Challenge.Ioc
     {
         public static IServiceCollection Inject(this IServiceCollection services)
         {
+            // Injector -> Versioning
+            services.AddApiVersioning(options =>
+            {
+                options.DefaultApiVersion = new ApiVersion(1, 0);
+                options.AssumeDefaultVersionWhenUnspecified = true; 
+                options.ReportApiVersions = true; 
+                options.ApiVersionReader = ApiVersionReader.Combine(
+                    new UrlSegmentApiVersionReader() // Versionamento via URL
+                );
+            });
+
             // Injector -> Fluent Validator
             services.AddScoped<IValidator<CustomerViewModel>, CustomerValidator>();
 

@@ -5,7 +5,8 @@ using Elaw.Challenge.Application;
 namespace Elaw.Challenge.Api.Controllers
 {
     [ApiController]
-    [Route("clientes")]
+    [Route("v{version:apiVersion}/clientes")]
+    [ApiVersion("1.0")]
     public class CustomerController : ControllerBase
     {
         private readonly ICustomerApplication _application;
@@ -17,7 +18,7 @@ namespace Elaw.Challenge.Api.Controllers
             _application = application;
         }
 
-        [HttpGet]
+        [HttpGet, MapToApiVersion("1.0")]
         public IActionResult Index()
         {
             var customers = _application.Get();
