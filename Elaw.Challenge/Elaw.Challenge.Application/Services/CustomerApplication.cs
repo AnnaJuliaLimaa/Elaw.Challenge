@@ -1,8 +1,5 @@
 ﻿using AutoMapper;
-using FluentValidation;
 using Elaw.Challenge.Domain;
-using Elaw.Challenge.Application.Validators;
-using System.ComponentModel.DataAnnotations;
 
 namespace Elaw.Challenge.Application
 {
@@ -26,8 +23,6 @@ namespace Elaw.Challenge.Application
 
             return _mapper.Map<CustomerViewModel>(createdCustomer);
         }
-
-
         public CustomerViewModel Update(Guid id, CustomerViewModel model)
         {
             var customer = _service.GetById(id);

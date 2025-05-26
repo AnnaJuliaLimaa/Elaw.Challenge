@@ -12,8 +12,4 @@
 	<ItemGroup>
 		<ProjectReference Include="..\Elaw.Challenge.Domain\Elaw.Challenge.Domain.csproj" />
 	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Interceptors\" />
-	</ItemGroup>
 </Project>
